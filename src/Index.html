@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Вендинговая машина</title>
+	<meta charset="utf-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="js/Script.js"></script>
+    <link href="css/Styles.css" rel="stylesheet" />
+</head>
+<body ng-app="myModule">
+    <div ng-controller="myController">
+        <table>
+            <tr>
+                <td colspan="3" align="center">
+                    <h2>Вендинговая машина</h2>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <b>Ассортимент:</b><br/>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Товар</th>
+                                <th>Цена</th>
+                                <th>Кол-во</th>
+                                <th>Купить</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="product in products">
+                                <td> {{ product.name }} </td>
+                                <td class="numberColumn"> {{ product.price }} руб</td>
+                                <td class="numberColumn"> {{ product.count }} </td>
+                                <td> <input type="button" value="Купить" ng-click="buy(product)" /> </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td>
+                    <b>Кошелёк ВМ:</b><br />
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Монета</th>
+                                <th>Кол-во</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="coin in machineCoins">
+                                <td class="numberColumn"> {{ coin.name }} руб</td>
+                                <td class="numberColumn"> {{ coin.count }} </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    Всего: <label> {{ machineAccount }} руб</label>
+                </td>
+                <td>
+                    <b>Кошелёк клиента:</b><br />
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Монета</th>
+                                <th>Кол-во</th>
+                                <th>Внести</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="coin in clientCoins">
+                                <td class="numberColumn"> {{ coin.name }} руб</td>
+                                <td class="numberColumn"> {{ coin.count }} </td>
+                                <td> <input type="button" value="Внести" ng-click="insert(coin)" /> </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    Внесённая сумма: <label> {{ clientAccount }} руб</label><br/>
+                    <input type="button" value="Сдача" ng-click="getChange()" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
